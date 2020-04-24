@@ -3,11 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import 'typeface-roboto';
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Router>
+      <div>
+        <Route path="/" component={App}></Route>
+      </div>
+  </Router>,
   document.getElementById('root')
 );
 
