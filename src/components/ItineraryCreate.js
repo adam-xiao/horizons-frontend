@@ -27,7 +27,7 @@ export default class ItineraryCreate extends Component {
           },
           body: JSON.stringify({
             itinerary: {
-                //user_id
+                user_id: this.props.user_id,
                 name: this.state.name, 
                 description: this.state.description,
                 start: this.state.start,
@@ -46,7 +46,7 @@ export default class ItineraryCreate extends Component {
       }
 
     render (){
-        
+        console.log(this.state)
         return( 
             <Form onSubmit={this.handleSubmit}>
                 <Form.Group>

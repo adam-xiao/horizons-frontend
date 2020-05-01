@@ -11,8 +11,8 @@ export default class DiscoverView extends Component {
         placeIds: [],
     }  
 
-  handleOnChange = (e) => this.setState( {search: e.target.value})
-  //
+    handleOnChange = (e) => this.setState( {search: e.target.value})
+  
 
     
     collectPlaceDetails =(id)=> {
@@ -20,11 +20,10 @@ export default class DiscoverView extends Component {
             .then(resp => resp.json())
             .then(data => {
                 this.setState(prevState => ({ placeDetails: [...prevState.placeDetails, data] }))
-                console.log('collecting details for: ', id, 'and got:', data)
+                // console.log('collecting details for: ', id, 'and got:', data)
             })
     }
 
-    // this.props.placeIds
 
     handleOnSubmit = (e) => {
         e.preventDefault()
@@ -44,7 +43,7 @@ export default class DiscoverView extends Component {
 
     render (){
         // console.log(this.state)
-
+        // itineraries={this.props.itineraries}
         return(
             <Form onSubmit={this.handleOnSubmit}>
                 <Form.Group>
@@ -56,7 +55,7 @@ export default class DiscoverView extends Component {
                 </Button>
                 {this.state.placeDetails.map((detail, index) => 
                     { 
-                    return <ActivityCard key={index} placeDetail={detail} />
+                    return <ActivityCard key={index} placeDetail={detail} itineraries={this.props.itineraries}/>
                     // return <div>
                     //     <h1>{details.result.name}</h1>
                     //     <h2>{details.result.formatted_address}</h2>
