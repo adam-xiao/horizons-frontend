@@ -88,7 +88,7 @@ export default function SignInSide(props) {
         props.setUser(response)
       }
     })
-
+    .then(props.fetchInfo)
   }
 
   return (

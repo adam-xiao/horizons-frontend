@@ -28,7 +28,13 @@ export default function ActivityCard(props) {
       })
     })
     .then(res => res.json())
-    .then(response => console.log(response))
+    .then(response => {
+      if (response.errors) {
+        alert(response.errors)
+      } else {
+        alert("Successfully Added!")
+      }
+    })
   }
 
 //   function setId(itinerary){

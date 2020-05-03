@@ -6,7 +6,7 @@ export default function ItinerarySnippet(props) {
 
     
     return(
-        <Card>
+        <Card onClick={() => props.handleDetailsOn(props.itinerary)}>
             <Card.Body>
                 <Card.Title>{props.itinerary.name}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">{props.itinerary.description}</Card.Subtitle>

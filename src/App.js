@@ -37,7 +37,7 @@ export default class App extends Component {
             })
           }
         })
-      // load user's itineraries
+      
       fetch(`http://localhost:3000/retrieveitin`, {
         headers: {
           "Authorization": localStorage.token
@@ -49,7 +49,48 @@ export default class App extends Component {
           console.log(data)
         }
       )
+      
+      fetch(`http://localhost:3000/retrieveactivity`, {
+        headers: {
+          "Authorization": localStorage.token
+        }
+      })
+        .then(resp => resp.json())
+        .then(data => { 
+          this.setState({ activities: data })
+          console.log(data)
+        }
+      )
+
     }
+  }
+
+
+  fetchInfo =()=>{
+    fetch(`http://localhost:3000/retrieveitin`, {
+        headers: {
+          "Authorization": localStorage.token
+        }
+      })
+        .then(resp => resp.json())
+        .then(data => { 
+          this.setState({ itineraries: data })
+          console.log(data)
+        }
+      )
+      
+      fetch(`http://localhost:3000/retrieveactivity`, {
+        headers: {
+          "Authorization": localStorage.token
+        }
+      })
+        .then(resp => resp.json())
+        .then(data => { 
+          this.setState({ activities: data })
+          console.log(data)
+        }
+      )
+
   }
 
   setUser = (response) => {
@@ -59,7 +100,6 @@ export default class App extends Component {
       localStorage.token = response.token
       this.props.history.push("/itineraries")
     })
-
   }
 
   logout = (e) => {
@@ -72,6 +112,17 @@ export default class App extends Component {
     })
   }
 
+  handleItineraryDestroy = (id) => {
+    fetch(`http://localhost:3000/itinerary/${id}`,
+      { method: 'DELETE' }
+    ).then(this.setState({ itineraries: this.state.itineraries.filter(itin => itin.id !== id) }))
+  }
+
+  handleActivityDestroy = (id) => {
+    fetch(`http://localhost:3000/activity/${id}`,
+      { method: 'DELETE' }
+    ).then(this.setState({ activities: this.state.activities.filter(activity => activity.id !== id) }))
+}
 
   render(){
     
@@ -81,11 +132,11 @@ export default class App extends Component {
         <div>
           <Switch>
               <Route exact path="/" render={() => <Landing />} />
-              <Route path="/itineraries" render={() => <ItineraryView itineraries={this.state.itineraries} />} />
-              <Route path="/signin" render={() => <SignInSide setUser={this.setUser} history={this.props.history}/>} />
+              <Route path="/itineraries" render={() => <ItineraryView itineraries={this.state.itineraries} handleItineraryDestroy={this.handleItineraryDestroy} activities={this.state.activities} handleActivityDestroy={this.handleActivityDestroy} />} />
+              <Route path="/signin" render={() => <SignInSide fetchInfo={this.fetchInfo} setUser={this.setUser} history={this.props.history}/>} />
               <Route path="/signup" render={() => <SignUp setUser={this.setUser} history={this.props.history}/>} />
-              <Route path="/discover" render={() => <DiscoverView itineraries={this.state.itineraries} />} />
-              <Route path="/createtrip" render={() => <ItineraryCreate user_id={this.state.currentUser.id}/>} />
+              <Route path="/discover" render={() => <DiscoverView fetchInfo={this.fetchInfo} itineraries={this.state.itineraries} history={this.props.history}/>} />
+              <Route path="/createtrip" render={() => <ItineraryCreate fetchInfo={this.fetchInfo} user_id={this.state.currentUser.id} history={this.props.history}/>} />
           </Switch>
         </div>
       </div>

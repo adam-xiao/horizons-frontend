@@ -16,6 +16,8 @@ export default class DiscoverView extends Component {
 
     
     collectPlaceDetails =(id)=> {
+        this.setState( {placeDetails: []} )
+
         fetch(`http://localhost:3000/activities/${id}`)
             .then(resp => resp.json())
             .then(data => {

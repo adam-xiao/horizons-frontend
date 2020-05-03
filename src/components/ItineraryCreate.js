@@ -17,7 +17,7 @@ export default class ItineraryCreate extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
 
-        console.log(this.state)
+        // console.log(this.state)
     
         fetch("http://localhost:3000/itinerary", {
           method: "POST",
@@ -37,6 +37,8 @@ export default class ItineraryCreate extends Component {
         })
         .then(res => res.json())
         .then(resp => console.log(resp))
+        .then(this.props.history.push("/itineraries")) //new Addition
+        .then(this.props.fetchInfo)
       }
 
       handleChange = (event) => {
@@ -46,7 +48,7 @@ export default class ItineraryCreate extends Component {
       }
 
     render (){
-        console.log(this.state)
+        // console.log(this.state)
         return( 
             <Form onSubmit={this.handleSubmit}>
                 <Form.Group>
