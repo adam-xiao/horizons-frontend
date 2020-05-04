@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Dropdown from 'react-bootstrap/Dropdown'
+import Image from 'react-bootstrap/Image'
 
 
 export default function ActivityCard(props) {
@@ -37,12 +38,19 @@ export default function ActivityCard(props) {
     })
   }
 
-//   function setId(itinerary){
-//     setTargetItin(itinerary.id)
-//   }
+
+  // function fetchImage(){
+  //   fetch(`http://localhost:3000/photos/${props.placeDetail.result.photos[0].photo_reference}`)
+  //           .then(resp => resp.json())
+  //           .then(data => setPlacePhoto(data),
+  //           console.log(placePhoto)
+  //           )
+  // }
+
+  let randomIndex = Math.floor(Math.random() * 100)
     
     return(
-        //onClick={setTargetItin(itinerary.id)}
+    
         <Card>
             <Card.Body>
                 <Card.Title>{props.placeDetail.result.name}</Card.Title>
@@ -50,6 +58,7 @@ export default function ActivityCard(props) {
                 <Card.Text>
                 Rating: {props.placeDetail.result.rating}
                 </Card.Text>
+                <Image fluid src={`https://source.unsplash.com/random/200x200/?${props.placeDetail.result.name}/?sig=${randomIndex}`} />
             <Dropdown>
                 <Dropdown.Toggle variant="primary" id="dropdown-basic">
                     Select Itinerary

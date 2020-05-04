@@ -52,19 +52,23 @@ export default class ItineraryCreate extends Component {
         return( 
             <Form onSubmit={this.handleSubmit}>
                 <Form.Group>
+                    <Form.Label>Name:</Form.Label>
                     <Form.Control name="name" type="text" placeholder="Name" onChange={this.handleChange}/>
                 </Form.Group>
 
                 <Form.Group>
+                    <Form.Label>Description:</Form.Label>
                     <Form.Control name="description" type="text" placeholder="Description" onChange={this.handleChange}/>
                 </Form.Group>
 
                 <Row>
                     <Col>
-                        <Form.Control name="start" placeholder="Start Date" onChange={this.handleChange}/>
+                        <Form.Label>Start Date:</Form.Label>
+                        <Form.Control name="start" placeholder="YYYY-MM-DD" onChange={this.handleChange}/>
                     </Col>
                     <Col>
-                        <Form.Control name="end" placeholder="End Date" onChange={this.handleChange}/>
+                        <Form.Label>End Date:</Form.Label>
+                        <Form.Control name="end" placeholder="YYYY-MM-DD" onChange={this.handleChange}/>
                     </Col>
                 </Row>  
             

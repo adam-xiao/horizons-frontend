@@ -44,8 +44,8 @@ export default class DiscoverView extends Component {
 
 
     render (){
-        // console.log(this.state)
-        // itineraries={this.props.itineraries}
+        console.log(this.state.placeDetails)
+        
         return(
             <Form onSubmit={this.handleOnSubmit}>
                 <Form.Group>

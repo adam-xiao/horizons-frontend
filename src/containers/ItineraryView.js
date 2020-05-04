@@ -22,13 +22,21 @@ export default class ItineraryView extends Component {
         end: ""
     }
 
-    //need update, archive and delete
+    handleArchiveToggle =()=>{
+        this.setState({
+            toggleArchive: !this.state.toggleArchive,
+            toggleDetails: false
+        })
+    }
 
-    //turn into a set true function then make a set false function and pass it down also
     handleDetailsOn =(itinerary)=>{
         this.setState({
             toggleDetails: true,
-            currentItin: itinerary
+            currentItin: itinerary,
+            name: itinerary.name,
+            description: itinerary.description,
+            start: itinerary.start,
+            end: itinerary.end
         })
     }
 
@@ -74,36 +82,66 @@ export default class ItineraryView extends Component {
         })
         .then(this.state.activitiesToDelete.forEach(id => this.props.handleActivityDestroy(id)))
         .then(this.setState( {toggleEdit: false}))
+        .then(this.props.fetchInfo)
     }
+
     
-    
+    handleShowArchived=()=>{
+        if (this.props.itineraries !== 0 && this.state.toggleArchive === false){
+            let notArchived = this.props.itineraries.filter(itin => itin.archived === false)  
+            
+            return notArchived.map((itinerary, index) =>
+                { 
+                return <ItinerarySnippet key={index} itinerary={itinerary} handleDetailsOn={this.handleDetailsOn} />
+                })
+        }else if(this.props.itineraries !== 0 && this.state.toggleArchive === true){
+            let archived = this.props.itineraries.filter(itin => itin.archived === true)  
+            
+            return archived.map((itinerary, index) =>
+                { 
+                return <ItinerarySnippet key={index} itinerary={itinerary} handleDetailsOn={this.handleDetailsOn} />
+                })
+        }else{
+            return <div>YOU GOT NOTHING</div>
+        }
+    }
+
+    archiveItinerary=(id)=>{
+        fetch(`http://localhost:3000/itinerary/${id}`,
+        {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            itinerary: {
+                archived: true
+            }
+          })
+        })
+        .then(this.props.fetchInfo)
+        .then(this.setState( {toggleDetails: false}))
+    }
 
     render(){
+
         const view = (
             <Container fluid>
-                <Form>  
+                <Form onChange={this.handleArchiveToggle}>  
                     <Form.Check 
                         type="switch"
                         id="custom-switch"
                         label="Check for Past Itineraries"
+                        value="0"
                     />
                 </Form>
                 
                 <Row>
                     <Col>
-                    {this.props.itineraries.length !== 0 ?
-                    
-                        this.props.itineraries.map((itinerary, index) => 
-                            { 
-                            return <ItinerarySnippet key={index} itinerary={itinerary} handleDetailsOn={this.handleDetailsOn} />
-                            })
-                        :
-                        <div>YOU GOT NOTHING</div>
-                    }
+                    { this.handleShowArchived() }
                     </Col>
 
                     <Col>
-                    {this.state.toggleDetails === true ? <ItineraryDetails handleEditOn={this.handleEditOn} handleItineraryDestroy={this.props.handleItineraryDestroy} handleDetailsOff={this.handleDetailsOff} activities={this.props.activities} currentItin={this.state.currentItin} /> : null}
+                    {this.state.toggleDetails === true ? <ItineraryDetails archiveItinerary={this.archiveItinerary} handleEditOn={this.handleEditOn} handleItineraryDestroy={this.props.handleItineraryDestroy} handleDetailsOff={this.handleDetailsOff} activities={this.props.activities} currentItin={this.state.currentItin} archiveState={this.state.toggleArchive} /> : null}
                     </Col>
                 </Row>
             </Container>
@@ -112,18 +150,22 @@ export default class ItineraryView extends Component {
         const edit = (
             <Form>
                 <Form.Group>
+                    <Form.Label>Name:</Form.Label>
                     <Form.Control name="name" type="text" placeholder={this.state.currentItin.name} onChange={this.handleChange}/>
                 </Form.Group>
 
                 <Form.Group>
+                    <Form.Label>Description:</Form.Label>
                     <Form.Control name="description" type="text" placeholder={this.state.currentItin.description} onChange={this.handleChange}/>
                 </Form.Group>
 
                 <Row>
                     <Col>
+                        <Form.Label>Start Date:</Form.Label>
                         <Form.Control name="start" placeholder={this.state.currentItin.start} onChange={this.handleChange}/>
                     </Col>
                     <Col>
+                        <Form.Label>End Date:</Form.Label>
                         <Form.Control name="end" placeholder={this.state.currentItin.end} onChange={this.handleChange}/>
                     </Col>
                 </Row>
