@@ -131,7 +131,7 @@ export default class App extends Component {
       <NavigBar logout={this.logout} username={this.state.currentUser.username}/>
         <div>
           <Switch>
-              <Route exact path="/" render={() => <Landing />} />
+              <Route exact path="/" render={() => <Landing history={this.props.history}/>} />
               <Route path="/itineraries" render={() => <ItineraryView fetchInfo={this.fetchInfo} itineraries={this.state.itineraries} handleItineraryDestroy={this.handleItineraryDestroy} activities={this.state.activities} handleActivityDestroy={this.handleActivityDestroy} />} />
               <Route path="/signin" render={() => <SignInSide fetchInfo={this.fetchInfo} setUser={this.setUser} history={this.props.history}/>} />
               <Route path="/signup" render={() => <SignUp setUser={this.setUser} history={this.props.history}/>} />

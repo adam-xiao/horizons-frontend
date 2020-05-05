@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ActivityCard from '../components/ActivityCard'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
 
 export default class DiscoverView extends Component {
 
@@ -47,6 +48,8 @@ export default class DiscoverView extends Component {
         console.log(this.state.placeDetails)
         
         return(
+            <Container>
+
             <Form onSubmit={this.handleOnSubmit}>
                 <Form.Group>
                     <Form.Label>Discover!</Form.Label>
@@ -65,8 +68,8 @@ export default class DiscoverView extends Component {
                     // </div>
                     }
                 )}
-
             </Form>
+            </Container>
         )
     }
 }

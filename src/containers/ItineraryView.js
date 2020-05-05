@@ -126,6 +126,7 @@ export default class ItineraryView extends Component {
 
         const view = (
             <Container fluid>
+                
                 <Form onChange={this.handleArchiveToggle}>  
                     <Form.Check 
                         type="switch"
@@ -148,45 +149,49 @@ export default class ItineraryView extends Component {
         );
 
         const edit = (
-            <Form>
-                <Form.Group>
-                    <Form.Label>Name:</Form.Label>
-                    <Form.Control name="name" type="text" placeholder={this.state.currentItin.name} onChange={this.handleChange}/>
-                </Form.Group>
+            <Container>
 
-                <Form.Group>
-                    <Form.Label>Description:</Form.Label>
-                    <Form.Control name="description" type="text" placeholder={this.state.currentItin.description} onChange={this.handleChange}/>
-                </Form.Group>
 
-                <Row>
-                    <Col>
-                        <Form.Label>Start Date:</Form.Label>
-                        <Form.Control name="start" placeholder={this.state.currentItin.start} onChange={this.handleChange}/>
-                    </Col>
-                    <Col>
-                        <Form.Label>End Date:</Form.Label>
-                        <Form.Control name="end" placeholder={this.state.currentItin.end} onChange={this.handleChange}/>
-                    </Col>
-                </Row>
+                <Form>
+                    <Form.Group>
+                        <Form.Label>Name:</Form.Label>
+                        <Form.Control name="name" type="text" placeholder={this.state.currentItin.name} onChange={this.handleChange}/>
+                    </Form.Group>
 
-                <ListGroup>
-                {this.props.activities.filter(activity => activity.itinerary_id === this.state.currentItin.id && !(this.state.activitiesToDelete.includes(activity.id))).map( (activity, index) => {
-                    return <ListGroup.Item key={index} >
-                                {activity.name}<br />
-                                {activity.address}<br />
-                                {activity.rating}<br />
-                                <Button variant="primary" onClick={() => this.addActivitiesToDelete(activity.id)}>Delete Activity</Button>
-                            </ListGroup.Item>
-                    
-                })}
+                    <Form.Group>
+                        <Form.Label>Description:</Form.Label>
+                        <Form.Control name="description" type="text" placeholder={this.state.currentItin.description} onChange={this.handleChange}/>
+                    </Form.Group>
 
-            </ListGroup>  
-            
-            <Button variant="primary" type="button" onClick={() => this.handleSaveChanges()}>
-              Save Changes
-            </Button>
-          </Form>
+                    <Row>
+                        <Col>
+                            <Form.Label>Start Date:</Form.Label>
+                            <Form.Control name="start" placeholder={this.state.currentItin.start} onChange={this.handleChange}/>
+                        </Col>
+                        <Col>
+                            <Form.Label>End Date:</Form.Label>
+                            <Form.Control name="end" placeholder={this.state.currentItin.end} onChange={this.handleChange}/>
+                        </Col>
+                    </Row>
+
+                    <ListGroup>
+                    {this.props.activities.filter(activity => activity.itinerary_id === this.state.currentItin.id && !(this.state.activitiesToDelete.includes(activity.id))).map( (activity, index) => {
+                        return <ListGroup.Item key={index} >
+                                    {activity.name}<br />
+                                    {activity.address}<br />
+                                    {activity.rating}<br />
+                                    <Button variant="primary" onClick={() => this.addActivitiesToDelete(activity.id)}>Delete Activity</Button>
+                                </ListGroup.Item>
+                        
+                    })}
+
+                    </ListGroup>  
+                
+                    <Button variant="primary" type="button" onClick={() => this.handleSaveChanges()}>
+                    Save Changes
+                    </Button>
+                </Form>
+            </Container>
         );
 
 

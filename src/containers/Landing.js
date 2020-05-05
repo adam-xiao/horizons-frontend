@@ -9,15 +9,19 @@ export default class Landing extends Component {
 
     render (){
         return(
-           
-                
-            <Container>
+           <>
+            { localStorage.token ? this.props.history.push("/itineraries") :
+
+
+            <Container className="landing">
                 <Row>
                     Horizons - Travel Planning for Those Who Only Want To Look Forward
                     <Col><Button href="/signin">Sign In</Button></Col>
                     <Col><Button href="/signup">Sign Up</Button></Col>
                 </Row>
             </Container>      
+            }
+            </>       
         )
     }
 }

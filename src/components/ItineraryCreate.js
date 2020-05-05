@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Container from 'react-bootstrap/Container'
 
 
 export default class ItineraryCreate extends Component {
@@ -49,7 +50,8 @@ export default class ItineraryCreate extends Component {
 
     render (){
         // console.log(this.state)
-        return( 
+        return(
+          <Container className="allCenter">
             <Form onSubmit={this.handleSubmit}>
                 <Form.Group>
                     <Form.Label>Name:</Form.Label>
@@ -72,11 +74,11 @@ export default class ItineraryCreate extends Component {
                     </Col>
                 </Row>  
             
-            <Button variant="primary" type="submit">
+            <Button className="hCenter" variant="primary" type="submit">
               Submit
             </Button>
           </Form>
-
+        </Container> 
         )
     }
 }

@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Dropdown from 'react-bootstrap/Dropdown'
 import Image from 'react-bootstrap/Image'
+import Media from 'react-bootstrap/Media'
 
 
 export default function ActivityCard(props) {
@@ -38,6 +39,15 @@ export default function ActivityCard(props) {
     })
   }
 
+  function dropdownItems(){
+    let notArchived = props.itineraries.filter(itin => itin.archived === false)  
+            
+            return notArchived.map((itinerary, index) =>
+                { 
+                return <Dropdown.Item key={index} onClick={() => setTargetItin(itinerary.id)}>{itinerary.name}</Dropdown.Item>
+                })
+  }
+
 
   // function fetchImage(){
   //   fetch(`http://localhost:3000/photos/${props.placeDetail.result.photos[0].photo_reference}`)
@@ -50,30 +60,61 @@ export default function ActivityCard(props) {
   let randomIndex = Math.floor(Math.random() * 100)
     
     return(
-    
-        <Card>
-            <Card.Body>
-                <Card.Title>{props.placeDetail.result.name}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">{props.placeDetail.result.formatted_address}</Card.Subtitle>
-                <Card.Text>
-                Rating: {props.placeDetail.result.rating}
-                </Card.Text>
-                <Image fluid src={`https://source.unsplash.com/random/200x200/?${props.placeDetail.result.name}/?sig=${randomIndex}`} />
+      <Card>
+        <Media>
+          <img
+            width={200}
+            height={200}
+            className="mr-3"
+            src={`https://source.unsplash.com/random/200x200/?${props.placeDetail.result.name}/?sig=${randomIndex}`}
+            alt="Generic placeholder"
+          />
+          <Media.Body>
+            <h5>{props.placeDetail.result.name}</h5>
+            <p>{props.placeDetail.result.formatted_address}</p>
+            <p>Rating: {props.placeDetail.result.name}</p>
             <Dropdown>
-                <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                    Select Itinerary
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                    {
-                        props.itineraries.map((itinerary, index) => <Dropdown.Item key={index} onClick={() => setTargetItin(itinerary.id)}>{itinerary.name}</Dropdown.Item>)
-                    }
-                    {/* <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
-                </Dropdown.Menu>
-                </Dropdown>
-            <Button onClick={handleSubmit}>Add to Itinerary</Button>
-            </Card.Body>
-        </Card>
+                  <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                      Select Itinerary
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                      { dropdownItems()}
+                      
+                      {/* {
+                          props.itineraries.map((itinerary, index) => <Dropdown.Item key={index} onClick={() => setTargetItin(itinerary.id)}>{itinerary.name}</Dropdown.Item>)
+                      } */}
+                  </Dropdown.Menu>
+                  </Dropdown>
+              <Button onClick={handleSubmit}>Add to Itinerary</Button>
+          </Media.Body>
+        </Media>
+      </Card>  
+
+
+
+        // <Card>
+        //     <Card.Body>
+        //         <Card.Title>{props.placeDetail.result.name}</Card.Title>
+        //         <Card.Subtitle className="mb-2 text-muted">{props.placeDetail.result.formatted_address}</Card.Subtitle>
+        //         <Card.Text>
+        //         Rating: {props.placeDetail.result.rating}
+        //         </Card.Text>
+        //         <Image fluid src={`https://source.unsplash.com/random/200x200/?${props.placeDetail.result.name}/?sig=${randomIndex}`} />
+        //     <Dropdown>
+        //         <Dropdown.Toggle variant="primary" id="dropdown-basic">
+        //             Select Itinerary
+        //         </Dropdown.Toggle>
+        //         <Dropdown.Menu>
+        //             {
+        //                 props.itineraries.map((itinerary, index) => <Dropdown.Item key={index} onClick={() => setTargetItin(itinerary.id)}>{itinerary.name}</Dropdown.Item>)
+        //             }
+        //             {/* <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+        //             <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+        //             <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
+        //         </Dropdown.Menu>
+        //         </Dropdown>
+        //     <Button onClick={handleSubmit}>Add to Itinerary</Button>
+        //     </Card.Body>
+        // </Card>
     )
 }
