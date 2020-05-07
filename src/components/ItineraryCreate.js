@@ -52,7 +52,7 @@ export default class ItineraryCreate extends Component {
         // console.log(this.state)
         return(
           <Container className="allCenter">
-            <Form onSubmit={this.handleSubmit}>
+            <Form onSubmit={this.handleSubmit} className="text">
                 <Form.Group>
                     <Form.Label>Name:</Form.Label>
                     <Form.Control name="name" type="text" placeholder="Name" onChange={this.handleChange}/>

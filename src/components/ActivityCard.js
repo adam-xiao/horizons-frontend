@@ -72,7 +72,7 @@ export default function ActivityCard(props) {
           <Media.Body>
             <h5>{props.placeDetail.result.name}</h5>
             <p>{props.placeDetail.result.formatted_address}</p>
-            <p>Rating: {props.placeDetail.result.name}</p>
+            <p>Rating: {props.placeDetail.result.rating}</p>
             <Dropdown>
                   <Dropdown.Toggle variant="primary" id="dropdown-basic">
                       Select Itinerary

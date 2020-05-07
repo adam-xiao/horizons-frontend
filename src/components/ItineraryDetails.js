@@ -21,7 +21,7 @@ export default function ItineraryDetails(props) {
                     return <ListGroup.Item key={index} >
                                 {activity.name}<br />
                                 {activity.address}<br />
-                                {activity.rating}
+                                Rating: {activity.rating}
                             </ListGroup.Item>
                     
                 })}

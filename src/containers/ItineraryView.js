@@ -133,6 +133,7 @@ export default class ItineraryView extends Component {
                         id="custom-switch"
                         label="Check for Past Itineraries"
                         value="0"
+                        className="text"
                     />
                 </Form>
                 

@@ -50,8 +50,8 @@ export default class DiscoverView extends Component {
         return(
             <Container>
 
-            <Form onSubmit={this.handleOnSubmit}>
-                <Form.Group>
+            <Form onSubmit={this.handleOnSubmit} >
+                <Form.Group className="text">
                     <Form.Label>Discover!</Form.Label>
                     <Form.Control type="search" placeholder="Discover Somewhere New!" onChange={this.handleOnChange} value={this.state.search} />
                 </Form.Group>

@@ -19,12 +19,31 @@ body {
 
 
 .parentTest{
-  display: flex;
-  align-items: flex-start;
+  /* position: absolute; top: 0; left: 0; height: 100%; width: 100%; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  align-items: center;
+  text-align: center;
+  align-content: center;
+  /* justify-content: center; */
+}
+
+.text{
+  align-items: center;
+  text-align: center;
+  font-size: 20px;
+  color: azure;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 
 .test{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  color: azure;
+  font-size: 80px;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+.test2{
+  color: azure;
+  font-size: 60px;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }

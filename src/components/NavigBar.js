@@ -17,7 +17,7 @@ export default class NavigBar extends Component {
                         <Nav.Link href="/itineraries">My Itineraries</Nav.Link>
                         <Nav.Link href="/createtrip">Create Trip</Nav.Link>
                         <Nav.Link href="/discover">Discover</Nav.Link>
-                        <Navbar.Text>Hello, {this.props.username}</Navbar.Text><pre> </pre><Button type="submit" onClick={this.props.logout}>Sign out</Button>
+                        <pre>                                                                                               </pre><Navbar.Text>Hello, {this.props.username}</Navbar.Text><pre> </pre><Button type="submit" onClick={this.props.logout}>Sign out</Button>
                     </Nav>
                 </Navbar>
                 :

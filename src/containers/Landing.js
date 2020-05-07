@@ -12,12 +12,30 @@ export default class Landing extends Component {
            <>
             { localStorage.token ? this.props.history.push("/itineraries") :
 
-
-            <Container className="landing">
+            
+            <Container className="parentTest">
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
                 <Row>
-                    Horizons - Travel Planning for Those Who Only Want To Look Forward
-                    <Col><Button href="/signin">Sign In</Button></Col>
-                    <Col><Button href="/signup">Sign Up</Button></Col>
+                    <h1 className="test">Horizons</h1><br/>
+                </Row>
+                <Row>
+                    <h1 className="test2">For The Forward Traveler</h1>
+                </Row>
+                    
+                
+                <br></br>
+                <Row>
+                    <Col>
+                    <Button href="/signin">Sign In</Button><pre>        </pre><Button href="/signup">Sign Up</Button>
+                    </Col>
+                    {/* <Col>
+                    
+                    </Col> */}
+                {/* <Button href="/signin">Sign In</Button><pre>               </pre><Button href="/signup">Sign Up</Button> */}
                 </Row>
             </Container>      
             }
