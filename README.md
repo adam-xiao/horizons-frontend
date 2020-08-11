@@ -7,3 +7,6 @@ Travel Planning and Landmark Discovery Web App
 ● Developed a Rails API backend with endpoints for place details, photos, and autocomplete
 
 Download the frontend and backend, then run "npm start" and "rails s" respectively.
+
+Backend:
+https://github.com/adam-xiao/horizons-backend
